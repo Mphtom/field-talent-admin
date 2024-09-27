@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { Bell, Menu } from "lucide-react"; // إضافة أيقونة X (زر الإغلاق)
+import { Bell, Menu } from "lucide-react"; 
 import "./App.css";
 
 function App() {
-  const [isSidebarOpen, setSidebarOpen] = useState(false); // حالة القائمة الجانبية
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setSidebarOpen(!isSidebarOpen); // تغيير حالة القائمة
+    setSidebarOpen(!isSidebarOpen);
   };
 
-  // إغلاق الـ Sidebar عند الضغط خارجها
+ 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (isSidebarOpen && !event.target.closest("aside")) {
@@ -25,15 +25,13 @@ function App() {
 
   return (
     <div className="min-h-screen flex bg-base-200 relative">
-      {/* Left Sidebar - تظهر فقط على الشاشات الكبيرة */}
+      {/* Left Sidebar */}
       <aside
         className={`w-64 bg-base-100 shadow-lg p-4 rounded-lg lg:block lg:relative fixed top-0 left-0 h-full transition-transform duration-300 ease-in-out ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } z-50 lg:translate-x-0`}
       >
         <div className="flex flex-col space-y-4">
-          {/* زر الإغلاق داخل الـ Sidebar */}
-
           <button
             className="lg:hidden btn btn-circle btn-outline"
             onClick={toggleSidebar}
@@ -77,7 +75,6 @@ function App() {
         {/* Header */}
         <header className="navbar bg-base-100 shadow-lg p-4 mx-4 rounded-lg flex justify-between">
           <div className="flex items-center">
-            {/* Hamburger Menu Icon - يظهر فقط على الشاشات الصغيرة */}
             <button
               className="lg:hidden btn btn-outline hover:bg-white hover:text-primary hover:shadow-xl text-sm rounded-lg"
               onClick={toggleSidebar}
