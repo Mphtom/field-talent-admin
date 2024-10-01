@@ -11,10 +11,23 @@ import {
   LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { useAuthContext } from "../store/AuthContext";
+import { api } from "../Api/AxiosServiceConfiguration";
+import { userSchema } from "../store/AuthContext";
+import apiService from "../Api/AxiosServiceConfiguration";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-
+  const [user,setUser]=useAuthContext();
+const navigate = useNavigate();
+const handleLogout =  ()=>{
+  
+  setUser({...userSchema});
+  api.defaults.headers.common['Authorization'] = null;
+ localStorage.removeItem("user");
+console.log("logged out");
+navigate('/login',{replace:true});
+};
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -95,7 +108,7 @@ const Home = () => {
                 className="mt-auto flex items-center space-x-3 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
               >
                 <LogOut className="w-5 h-5" />
-                <span>Logout</span>
+                <button onClick={handleLogout}>Logout</button>
               </motion.a>
             </div>
           </motion.aside>
@@ -128,17 +141,24 @@ const Home = () => {
                   className="text-gray-500 hover:text-gray-700"
                 >
                   <Bell className="w-6 h-6" />
+                  
                 </motion.button>
+                <motion.div
+                whileHover={{ scale: 1.1 }}
+                >{user.name}</motion.div>
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden"
                 >
+                  
                   <img
                     src="https://askmescript.com/upload/photos/2020/04/pNFDnM5HcX9sozLiqIN4_24_62b73862def5530a11afeb3a88f402de_image.png"
                     alt="User Avatar"
                     className="w-full h-full object-cover"
                   />
+                 
                 </motion.div>
+                
               </div>
             </div>
           </div>
