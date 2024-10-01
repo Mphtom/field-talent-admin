@@ -6,8 +6,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const config ={
   baseURL: apiUrl,
   headers: {
-    'Content-Type': 'application/json',
-    'access-control-allow-origin':'*'
+    'Content-Type': 'application/json'
   }
 
 }

@@ -12,22 +12,25 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuthContext } from "../store/AuthContext";
-import { api } from "../Api/AxiosServiceConfiguration";
-import { userSchema } from "../store/AuthContext";
-import apiService from "../Api/AxiosServiceConfiguration";
 import { useNavigate } from "react-router-dom";
+import { userSchema } from "../store/AuthContext";
+import { api } from "../Api/AxiosServiceConfiguration";
+
 const Home = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [user,setUser]=useAuthContext();
-const navigate = useNavigate();
-const handleLogout =  ()=>{
+
+  const navigate = useNavigate();
+
+  const handleLogout =  () => {
+    setUser({...userSchema});
+    api.defaults.headers.common['Authorization'] = null;
+    localStorage.removeItem("user");
+    console.log("logged out");
+    navigate('/login',{replace:true});
+    };
   
-  setUser({...userSchema});
-  api.defaults.headers.common['Authorization'] = null;
- localStorage.removeItem("user");
-console.log("logged out");
-navigate('/login',{replace:true});
-};
+
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };

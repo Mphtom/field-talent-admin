@@ -4,7 +4,7 @@
 import {  useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../components/uiComponents/Button";
 import apiService from '../Api/AxiosServiceConfiguration';
@@ -34,15 +34,13 @@ export default function Login({handleLogin,isUserLoggedIn}) {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-   const location = useLocation();
-   const from = location.state?.from?.pathname 
+ 
 
   useEffect(() => {
     window.scrollTo(0,0)
 
       if (isUserLoggedIn) {
-        navigate('/admin', { replace: true });
+        navigate('/', { replace: true });
       }
   }, [isUserLoggedIn, navigate]);
 
@@ -60,7 +58,7 @@ export default function Login({handleLogin,isUserLoggedIn}) {
     
     handleLogin(res.data.token, res.data.name, res.data.email,res.data.id);
     if(isUserLoggedIn)
-      navigate('/admin', { replace: true });
+      navigate('/', { replace: true });
 
   
     } 
