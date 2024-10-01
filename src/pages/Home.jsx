@@ -25,7 +25,6 @@ const Home = () => {
   const handleLogout =  () => {
     setUser({...userSchema});
     api.defaults.headers.common['Authorization'] = null;
-    localStorage.removeItem("user");
     console.log("logged out");
     navigate('/login',{replace:true});
     };
