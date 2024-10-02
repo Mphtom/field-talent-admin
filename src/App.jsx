@@ -40,9 +40,20 @@ function App() {
           }
         />
 
-        <Route index path="/client" element={<Client />} />
+        <Route index path="/client" element={
+        user.isUserLoggedIn ? (
+          <Client />
+        ) : (
+          <Navigate to="/login" replace:true />
+        )
+      } 
+        />
 
-        <Route index path="/engineer" element={<Engineer />} />
+        <Route index path="/engineer" element={user.isUserLoggedIn ? (
+              <Engineer />
+            ) : (
+              <Navigate to="/login" replace:true />
+            )} />
 
         <Route
           path="/login"
