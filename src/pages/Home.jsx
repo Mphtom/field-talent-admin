@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import {
   Bell,
   CircleX,
@@ -81,29 +82,35 @@ const Home = () => {
                 <CircleX className="w-6 h-6" />
               </button>
 
+
               <div className="space-y-4 mt-8">
-                {[
-                  { icon: LayoutDashboard, text: "Dashboard", primary: true },
-                  { icon: UserRound, text: "Clients" },
-                  { icon: HardHat, text: "Engineers" },
-                  { icon: HousePlus, text: "Projects" },
-                  { icon: Settings, text: "Settings" },
-                ].map((item, index) => (
-                  <motion.a
-                    key={index}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors duration-200 ${
-                      item.primary
-                        ? "bg-blue-500 text-white hover:bg-blue-600"
-                        : "text-gray-700 hover:bg-gray-100"
-                    }`}
-                  >
-                    <item.icon className="w-5 h-5" />
-                    <span>{item.text}</span>
-                  </motion.a>
-                ))}
-              </div>
+  {[
+    { icon: LayoutDashboard, text: "Dashboard", path: "/dashboard", primary: true },
+    { icon: UserRound, text: "Clients", path: "/client" },
+    { icon: HardHat, text: "Engineers", path: "/engineer" },
+    { icon: HousePlus, text: "Projects", path: "/projects" },
+    { icon: Settings, text: "Settings", path: "/settings" },
+  ].map((item, index) => (
+    <motion.div
+      key={index}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className={`flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors duration-200 ${
+        item.primary
+          ? "bg-blue-500 text-white hover:bg-blue-600"
+          : "text-gray-700 hover:bg-gray-100"
+      }`}
+    >
+      <Link to={item.path} className="flex items-center space-x-3 w-full">
+        <item.icon className="w-5 h-5" />
+        <span>{item.text}</span>
+      </Link>
+    </motion.div>
+  ))}
+</div>
+
+
+
 
               <motion.a
                 whileHover={{ scale: 1.05 }}
@@ -117,6 +124,7 @@ const Home = () => {
           </motion.aside>
         )}
       </AnimatePresence>
+
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
