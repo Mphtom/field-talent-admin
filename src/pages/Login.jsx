@@ -83,7 +83,7 @@ export default function Login({handleLogin,isUserLoggedIn}) {
         </div>
         <div className="card w-full bg-s-light shadow-2xl  dark:bg-main-dark dark:bg-opacity-20">
           <form className="card-body space-y-4" onSubmit={handleSubmit(logUser)}>
-            <h1 className="text-main text-center text-4xl md:text-5xl font-bold dark:text-white">Login Now</h1>
+            <h1 className="text-main text-center text-4xl md:text-5xl font-bold dark:text-white">Hi Admin 👋</h1>
 
             <div className="form-control ">
               <label htmlFor="email" className="label">
