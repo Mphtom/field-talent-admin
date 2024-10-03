@@ -16,7 +16,7 @@ const api = axios.create(config);
 api.interceptors.request.use(
   (config) => {
 
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('admin');
 
     const token =JSON.parse(user).token
     if (token) {
@@ -31,7 +31,7 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     if (error.response.status === 401 && error.response.data === 'invalid signature') {
-      localStorage.removeItem('user');
+      localStorage.removeItem('admin');
 
       window.location.href = '/login';
     }

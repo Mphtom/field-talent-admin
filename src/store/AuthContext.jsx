@@ -16,7 +16,7 @@ const AuthContextProvider = AuthContext.Provider;
 export default  function  AuthProvider({children}){
     const [user, setUser] = useState(
         () => {
-            const savedUser = localStorage.getItem("user");
+            const savedUser = localStorage.getItem("admin");
             return savedUser ? JSON.parse(savedUser) : userSchema;
           }
     ); 

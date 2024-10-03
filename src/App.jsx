@@ -10,7 +10,7 @@ function App() {
   const [user, setUser] = useAuthContext();
 
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("admin", JSON.stringify(user));
     console.log(user);
   }, [user]);
 
