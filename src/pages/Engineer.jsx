@@ -42,6 +42,7 @@ const Engineer = () => {
   };
 
   return (
+    
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-base-100 flex items-center justify-center p-6">
       <motion.div 
         className="max-w-6xl w-full bg-base-100 rounded-2xl shadow-xl overflow-hidden"

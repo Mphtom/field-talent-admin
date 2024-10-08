@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Client from "./pages/Client";
 import Engineer from "./pages/Engineer";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [user, setUser] = useAuthContext();
@@ -29,31 +30,19 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          index
+          
           path="/"
-          element={
-            user.isUserLoggedIn ? (
-              <Home />
-            ) : (
-              <Navigate to="/login" replace:true />
-            )
-          }
-        />
+          element={ user.isUserLoggedIn ? (<Home />) : ( <Navigate to="/login" replace:true /> ) }>
 
-        <Route index path="/client" element={
-        user.isUserLoggedIn ? (
-          <Client />
-        ) : (
-          <Navigate to="/login" replace:true />
-        )
-      } 
-        />
+            
+        <Route index  element={user.isUserLoggedIn ? (<Dashboard/>):(<Navigate to="/login" replace:true />)}/>
 
-        <Route index path="/engineer" element={user.isUserLoggedIn ? (
-              <Engineer />
-            ) : (
-              <Navigate to="/login" replace:true />
-            )} />
+        <Route  path="/client" element={user.isUserLoggedIn ? (<Client />) : ( <Navigate to="/login" replace:true /> )}  />
+
+        <Route  path="/engineer" element={user.isUserLoggedIn ? (  <Engineer /> ) : ( <Navigate to="/login" replace:true /> )} />
+
+                      
+          </Route>
 
         <Route
           path="/login"

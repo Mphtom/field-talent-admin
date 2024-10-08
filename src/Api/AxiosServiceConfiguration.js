@@ -30,9 +30,10 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response.status === 401 && error.response.data === 'invalid signature') {
+    if (error.response?.status === 401 && error.response?.data === 'invalid token') {
+    
       localStorage.removeItem('admin');
-
+      
       window.location.href = '/login';
     }
    
@@ -44,6 +45,7 @@ api.interceptors.response.use(
 const apiService = {
 
   loginAdmin: (credentials) => api.post('/login', credentials),
+  getEngineersVerifyRequests: () => api.get(`/engineersVerifyRequests`),
 };
 export {api};
 export default apiService;
